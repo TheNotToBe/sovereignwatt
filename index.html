@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SovereignWatt — Clean Energy Intelligence</title>
+<meta name="description" content="SovereignWatt is your trusted source for clean energy insights, tools, and intelligence. Make smarter energy decisions.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-light: #121F33;
+    --navy-mid: #1A2B45;
+    --amber: #F59E0B;
+    --amber-light: #FBBF24;
+    --amber-dark: #D97706;
+    --teal: #06B6D4;
+    --teal-light: #22D3EE;
+    --slate: #94A3B8;
+    --slate-light: #CBD5E1;
+    --white: #FFFFFF;
+    --off-white: #F8FAFC;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 22, 40, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-text span:first-child { color: var(--white); }
+  .logo-text span:last-child { color: var(--amber); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--slate-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--amber-light) !important; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.05) rotate(2deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--amber);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  h1 .highlight {
+    background: linear-gradient(135deg, var(--amber), var(--amber-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--navy);
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--amber-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: rgba(6, 182, 212, 0.05);
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--amber);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  /* Sections */
+  section { padding: 6rem 2rem; }
+
+  .section-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-desc {
+    color: var(--slate);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* Features / What We Do */
+  .features {
+    background: var(--navy-light);
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .features-header .section-desc {
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--amber), var(--teal));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(245, 158, 11, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card p {
+    color: var(--slate);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Blog Preview */
+  .blog-section {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .blog-card:hover {
+    border-color: rgba(6, 182, 212, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .blog-card-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(245, 158, 11, 0.1));
+  }
+
+  .blog-card-body { padding: 1.5rem; }
+
+  .blog-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .blog-card-body p {
+    color: var(--slate);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .blog-date {
+    font-size: 0.8rem;
+    color: var(--slate);
+    margin-top: 1rem;
+  }
+
+  /* CTA / Newsletter */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .cta-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.08), transparent 60%);
+  }
+
+  .cta-box > * { position: relative; z-index: 1; }
+
+  .cta-box h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-box p {
+    color: var(--slate);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 450px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .email-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.85rem 1.2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border 0.3s;
+  }
+
+  .email-form input:focus {
+    border-color: var(--amber);
+  }
+
+  .email-form input::placeholder {
+    color: var(--slate);
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--slate);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-copy {
+    color: var(--slate);
+    font-size: 0.85rem;
+  }
+
+  .footer-email a {
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 0.75rem 1rem; }
+    .nav-links { display: none; }
+    .stats-bar { gap: 1.5rem; }
+    .blog-header { flex-direction: column; align-items: flex-start; }
+    .footer-content { flex-direction: column; text-align: center; }
+  }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up:nth-child(2) { animation-delay: 0.15s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 3L8 20h8l-2 13L28 16h-8l2-13z" fill="#F59E0B" stroke="#0A1628" stroke-width="1"/>
+      <circle cx="28" cy="12" r="2" fill="#06B6D4"/>
+      <circle cx="30" cy="18" r="1.5" fill="#06B6D4"/>
+      <circle cx="27" cy="24" r="1.5" fill="#06B6D4"/>
+      <line x1="26" y1="16" x2="30" y2="18" stroke="#06B6D4" stroke-width="0.8"/>
+      <line x1="28" y1="12" x2="26" y2="16" stroke="#06B6D4" stroke-width="0.8"/>
+    </svg>
+    <div class="logo-text"><span>Sovereign</span><span>Watt</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#subscribe" class="nav-cta">Get Updates</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge fade-up">
+      <span class="dot"></span>
+      Launching Soon
+    </div>
+    <h1 class="fade-up">Take Control of Your <span class="highlight">Energy Future</span></h1>
+    <p class="hero-sub fade-up">
+      SovereignWatt is your intelligence platform for clean energy decisions. 
+      Insights, tools, and analysis to help you save money and go independent.
+    </p>
+    <div class="hero-cta-group fade-up">
+      <a href="#subscribe" class="btn-primary">Join the Waitlist →</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="stats-bar fade-up">
+      <div class="stat">
+        <div class="stat-number">30%</div>
+        <div class="stat-label">Avg. Energy Savings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">£0</div>
+        <div class="stat-label">Free to Use</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Energy Insights</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="about">
+  <div class="features-header">
+    <div class="section-label">What We're Building</div>
+    <h2 class="section-title">Energy Intelligence, Simplified</h2>
+    <p class="section-desc">We're building the tools and insights you need to navigate the clean energy transition with confidence.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card fade-up">
+      <div class="feature-icon">⚡</div>
+      <h3>Solar Savings Calculator</h3>
+      <p>Estimate your solar payback period, annual savings, and ROI based on your location and energy usage.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">📊</div>
+      <h3>Energy Market Insights</h3>
+      <p>Stay informed with curated analysis on energy prices, policy changes, and market trends that affect your bills.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">🔋</div>
+      <h3>Independence Score</h3>
+      <p>Assess how energy-independent your home or business is, and get a personalised roadmap to go further.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">💰</div>
+      <h3>Grants & Incentives Hub</h3>
+      <p>Find every available rebate, tax credit, and grant for clean energy in your area — updated regularly.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">🌍</div>
+      <h3>Community Insights</h3>
+      <p>Learn from others who've made the switch. Real stories, real numbers, real results from energy adopters.</p>
+    </div>
+    <div class="feature-card fade-up">
+      <div class="feature-icon">📰</div>
+      <h3>Weekly Briefing</h3>
+      <p>A concise weekly email with the most important clean energy news, deals, and opportunities you need to know.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Preview -->
+<section id="blog">
+  <div class="blog-section">
+    <div class="blog-header">
+      <div>
+        <div class="section-label">Latest Insights</div>
+        <h2 class="section-title">From the SovereignWatt Blog</h2>
+      </div>
+      <a href="#" class="btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">View All →</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-up">
+        <div class="blog-card-img">☀️</div>
+        <div class="blog-card-body">
+          <div class="blog-tag">Solar</div>
+          <h3>Is 2026 the Year to Go Solar? A Cost-Benefit Breakdown</h3>
+          <p>With panel prices dropping and energy costs rising, we crunch the numbers on the solar tipping point.</p>
+          <div class="blog-date">Coming Soon</div>
+        </div>
+      </div>
+      <div class="blog-card fade-up">
+        <div class="blog-card-img">🔌</div>
+        <div class="blog-card-body">
+          <div class="blog-tag">Grid Independence</div>
+          <h3>Home Battery Storage: What You Need to Know Before Buying</h3>
+          <p>Tesla Powerwall vs BYD vs alternatives — an honest comparison for homeowners ready to store their own energy.</p>
+          <div class="blog-date">Coming Soon</div>
+        </div>
+      </div>
+      <div class="blog-card fade-up">
+        <div class="blog-card-img">🏛️</div>
+        <div class="blog-card-body">
+          <div class="blog-tag">Policy</div>
+          <h3>UK Clean Energy Grants in 2026: The Complete Guide</h3>
+          <p>Every grant, incentive, and rebate available for UK homeowners looking to cut energy costs and go green.</p>
+          <div class="blog-date">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / Newsletter -->
+<section class="cta-section" id="subscribe">
+  <div class="cta-box">
+    <div class="section-label">Stay Ahead</div>
+    <h2>Get Early Access</h2>
+    <p>Join our list to be first to access our tools, insights, and weekly energy briefing. No spam — just signal.</p>
+    <div class="email-form">
+      <input type="email" id="emailInput" placeholder="you@email.com" />
+      <button class="btn-primary" onclick="handleSubscribe()">Subscribe</button>
+    </div>
+    <p id="formMsg" style="margin-top:1rem; font-size:0.9rem; display:none;"></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-copy">© 2026 SovereignWatt. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#subscribe">Subscribe</a></li>
+    </ul>
+    <div class="footer-email"><a href="mailto:admin@sovereignwatt.com">admin@sovereignwatt.com</a></div>
+  </div>
+</footer>
+
+<script>
+function handleSubscribe() {
+  const email = document.getElementById('emailInput').value;
+  const msg = document.getElementById('formMsg');
+  if (!email || !email.includes('@')) {
+    msg.style.display = 'block';
+    msg.style.color = '#F87171';
+    msg.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  msg.style.display = 'block';
+  msg.style.color = '#34D399';
+  msg.textContent = '🎉 You\'re on the list! We\'ll be in touch soon.';
+  document.getElementById('emailInput').value = '';
+}
+
+// Simple scroll animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .blog-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
