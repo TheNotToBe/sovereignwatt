@@ -9,6 +9,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   :root {
     --navy: #0A1628;
     --navy-light: #121F33;
@@ -718,11 +719,17 @@
     <div class="section-label">Stay Ahead</div>
     <h2>Get Early Access</h2>
     <p>Join our list to be first to access our tools, insights, and weekly energy briefing. No spam — just signal.</p>
-    <div class="email-form">
-      <input type="email" id="emailInput" placeholder="you@email.com" />
-      <button class="btn-primary" onclick="handleSubscribe()">Subscribe</button>
+    <div class="email-form" id="formContainer">
+      <input type="email" id="emailInput" name="email" placeholder="you@email.com" required />
+      <button class="btn-primary" type="button" onclick="handleSubscribe()">Subscribe</button>
     </div>
     <p id="formMsg" style="margin-top:1rem; font-size:0.9rem; display:none;"></p>
+    <!-- Hidden Netlify form for bot detection and submission -->
+    <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none;">
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input type="hidden" name="bot-field" />
+      <input type="email" name="email" />
+    </form>
   </div>
 </section>
 
@@ -750,10 +757,27 @@ function handleSubscribe() {
     msg.textContent = 'Please enter a valid email address.';
     return;
   }
-  msg.style.display = 'block';
-  msg.style.color = '#34D399';
-  msg.textContent = '🎉 You\'re on the list! We\'ll be in touch soon.';
-  document.getElementById('emailInput').value = '';
+  // Submit to Netlify Forms
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ 'form-name': 'waitlist', email: email }).toString()
+  })
+  .then(r => {
+    if (r.ok) {
+      msg.style.display = 'block';
+      msg.style.color = '#34D399';
+      msg.textContent = '🎉 You\'re on the list! We\'ll be in touch soon.';
+      document.getElementById('emailInput').value = '';
+    } else {
+      throw new Error('Form submission failed');
+    }
+  })
+  .catch(() => {
+    msg.style.display = 'block';
+    msg.style.color = '#F87171';
+    msg.textContent = 'Something went wrong. Please try again.';
+  });
 }
 
 // Simple scroll animation
