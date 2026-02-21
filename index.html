@@ -134,6 +134,8 @@
   .feature-card p{color:var(--slate);font-size:0.9rem;line-height:1.6;}
 
   /* CALCULATOR */
+  .calc-panel{display:none;max-width:900px;margin:0 auto;}
+  .calc-panel.active{display:block;}
   .calc-container{background:var(--navy-light);border:1px solid rgba(245,158,11,0.15);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;max-width:900px;margin:0 auto;}
   .calc-container::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--teal));}
   .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
@@ -283,6 +285,8 @@
         <button class="quick-q" onclick="askQuick('Should I get a battery with solar panels?')">Battery worth it?</button>
         <button class="quick-q" onclick="askQuick('What grants are available for solar in 2026?')">Solar grants 2026?</button>
         <button class="quick-q" onclick="askQuick('How much can I save with solar panels in the UK?')">How much can I save?</button>
+        <button class="quick-q" onclick="askQuick('What EV charger should I get for home?')">Best home EV charger?</button>
+        <button class="quick-q" onclick="askQuick('Can I charge my EV from solar panels?')">Solar + EV charging?</button>
       </div>
       <div class="chat-box" id="chatBox">
         <div class="chat-ai">👋 Hi! I'm SovereignWatt's AI energy advisor. Ask me anything about solar panels, battery storage, energy bills, grants, or going energy-independent in the UK. I'll give you honest, personalised advice.</div>
@@ -444,30 +448,120 @@ MCS certified: Yes"></textarea>
   </div>
 </section>
 
-<!-- SOLAR CALCULATOR -->
+<!-- CALCULATORS -->
 <section id="calculator" style="background:var(--navy-light);">
   <div style="text-align:center;margin-bottom:2rem;">
-    <div class="section-label">Free Tool</div>
-    <h2 class="section-title">Solar Savings Calculator</h2>
-    <p class="section-desc" style="margin:0 auto;">Estimate how much you could save by switching to solar energy.</p>
+    <div class="section-label">Free Calculators</div>
+    <h2 class="section-title">Crunch Your Numbers</h2>
+    <p class="section-desc" style="margin:0 auto;">Personalised estimates for solar savings and EV charging costs.</p>
   </div>
-  <div class="calc-container">
-    <div class="calc-grid">
-      <div class="calc-input-group"><label class="calc-label">Monthly Electricity Bill</label><span class="calc-sublabel">Your average monthly bill in £</span><input type="number" class="calc-input" id="calcBill" placeholder="e.g. 150" min="0"></div>
-      <div class="calc-input-group"><label class="calc-label">Roof Size</label><span class="calc-sublabel">Approximate usable roof area</span><select class="calc-select" id="calcRoof"><option value="20">Small (20 m²)</option><option value="30" selected>Medium (30 m²)</option><option value="45">Large (45 m²)</option><option value="60">Very Large (60 m²)</option></select></div>
-      <div class="calc-input-group"><label class="calc-label">Region</label><span class="calc-sublabel">Sunlight varies by region</span><select class="calc-select" id="calcRegion"><option value="1050">South England</option><option value="1000">Midlands</option><option value="950">North England</option><option value="900">Scotland</option><option value="1000">Wales</option><option value="950">Northern Ireland</option></select></div>
-      <div class="calc-input-group"><label class="calc-label">Roof Direction</label><span class="calc-sublabel">Main roof orientation</span><select class="calc-select" id="calcDirection"><option value="1.0">South</option><option value="0.87">South-East / South-West</option><option value="0.75">East / West</option><option value="0.55">North-East / North-West</option><option value="0.45">North</option></select></div>
-      <div class="calc-btn"><button class="btn-primary" onclick="calcSolar()" style="width:100%;justify-content:center;padding:1rem;">⚡ Calculate My Savings</button></div>
-      <div class="calc-results" id="calcResults">
-        <div class="results-grid">
-          <div class="result-card"><div class="result-value" style="color:var(--amber);" id="resSystem">—</div><div class="result-label">System Size (kWp)</div></div>
-          <div class="result-card"><div class="result-value" style="color:var(--green);" id="resSavings">—</div><div class="result-label">Annual Savings</div></div>
-          <div class="result-card"><div class="result-value" style="color:var(--teal);" id="resPayback">—</div><div class="result-label">Payback Period</div></div>
-          <div class="result-card"><div class="result-value" style="color:var(--amber-light);" id="resCost">—</div><div class="result-label">Est. System Cost</div></div>
+  <div class="tools-nav" style="margin-bottom:2rem;">
+    <button class="tool-tab active" onclick="switchCalc('solar',this)">⚡ Solar Savings</button>
+    <button class="tool-tab" onclick="switchCalc('ev',this)">🚗 EV Charging</button>
+    <button class="tool-tab" onclick="switchCalc('combo',this)">☀️🔌 Solar + EV</button>
+  </div>
+
+  <!-- SOLAR CALC -->
+  <div class="calc-panel active" id="calcPanel-solar">
+    <div class="calc-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Solar Savings Calculator</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:0.5rem;">Estimate your payback period and annual savings from solar panels.</p>
+      <div class="calc-grid">
+        <div class="calc-input-group"><label class="calc-label">Monthly Electricity Bill</label><span class="calc-sublabel">Your average monthly bill in £</span><input type="number" class="calc-input" id="calcBill" placeholder="e.g. 150" min="0"></div>
+        <div class="calc-input-group"><label class="calc-label">Roof Size</label><span class="calc-sublabel">Approximate usable roof area</span><select class="calc-select" id="calcRoof"><option value="20">Small (20 m²)</option><option value="30" selected>Medium (30 m²)</option><option value="45">Large (45 m²)</option><option value="60">Very Large (60 m²)</option></select></div>
+        <div class="calc-input-group"><label class="calc-label">Region</label><span class="calc-sublabel">Sunlight varies by region</span><select class="calc-select" id="calcRegion"><option value="1050">South England</option><option value="1000">Midlands</option><option value="950">North England</option><option value="900">Scotland</option><option value="1000">Wales</option><option value="950">Northern Ireland</option></select></div>
+        <div class="calc-input-group"><label class="calc-label">Roof Direction</label><span class="calc-sublabel">Main roof orientation</span><select class="calc-select" id="calcDirection"><option value="1.0">South</option><option value="0.87">South-East / South-West</option><option value="0.75">East / West</option><option value="0.55">North-East / North-West</option><option value="0.45">North</option></select></div>
+        <div class="calc-btn"><button class="btn-primary" onclick="calcSolar()" style="width:100%;justify-content:center;padding:1rem;">⚡ Calculate Solar Savings</button></div>
+        <div class="calc-results" id="calcResults">
+          <div class="results-grid">
+            <div class="result-card"><div class="result-value" style="color:var(--amber);" id="resSystem">—</div><div class="result-label">System Size (kWp)</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--green);" id="resSavings">—</div><div class="result-label">Annual Savings</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--teal);" id="resPayback">—</div><div class="result-label">Payback Period</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--amber-light);" id="resCost">—</div><div class="result-label">Est. System Cost</div></div>
+          </div>
+          <div class="savings-bar"><div class="bar-label"><span style="color:var(--slate-light);">Bill Reduction</span><span style="color:var(--green);font-weight:700;" id="resPct">—</span></div><div class="bar-track"><div class="bar-fill" id="resBar" style="width:0%;"></div></div></div>
+          <div class="result-card" style="margin-top:1rem;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);"><div class="result-value" style="color:var(--amber);" id="res25yr">—</div><div class="result-label">25-Year Net Savings</div></div>
+          <div class="result-note"><strong style="color:var(--teal);">📌 Note:</strong> Estimates based on average UK energy prices (34p/kWh), typical panel efficiency, and SEG payments. Get 3 quotes from MCS-certified installers for accurate pricing.</div>
         </div>
-        <div class="savings-bar"><div class="bar-label"><span style="color:var(--slate-light);">Bill Reduction</span><span style="color:var(--green);font-weight:700;" id="resPct">—</span></div><div class="bar-track"><div class="bar-fill" id="resBar" style="width:0%;"></div></div></div>
-        <div class="result-card" style="margin-top:1rem;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);"><div class="result-value" style="color:var(--amber);" id="res25yr">—</div><div class="result-label">25-Year Net Savings</div></div>
-        <div class="result-note"><strong style="color:var(--teal);">📌 Note:</strong> Estimates based on average UK energy prices (34p/kWh), typical panel efficiency, and SEG payments. Get 3 quotes from MCS-certified installers for accurate pricing.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EV CHARGING CALC -->
+  <div class="calc-panel" id="calcPanel-ev">
+    <div class="calc-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">EV Charging Cost Calculator</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:0.5rem;">Compare home vs public charging costs and find your optimal setup.</p>
+      <div class="calc-grid">
+        <div class="calc-input-group"><label class="calc-label">Your EV Battery Size</label><span class="calc-sublabel">Check your car's specs (typical: 40-77 kWh)</span>
+          <select class="calc-select" id="evBattery">
+            <option value="40">Small (40 kWh) — e.g. Nissan Leaf, MG4 SE</option>
+            <option value="52">Medium (52 kWh) — e.g. Peugeot e-208, Cupra Born</option>
+            <option value="64" selected>Large (64 kWh) — e.g. Hyundai Ioniq 5, Kia EV6</option>
+            <option value="77">Very Large (77 kWh) — e.g. Tesla Model 3 LR, BMW iX</option>
+            <option value="100">Premium (100 kWh) — e.g. Mercedes EQS, Tesla Model S</option>
+          </select>
+        </div>
+        <div class="calc-input-group"><label class="calc-label">Daily Miles Driven</label><span class="calc-sublabel">Your average daily driving distance</span><input type="number" class="calc-input" id="evMiles" placeholder="e.g. 30" min="0" value="30"></div>
+        <div class="calc-input-group"><label class="calc-label">Home Electricity Tariff</label><span class="calc-sublabel">Your rate per kWh</span>
+          <select class="calc-select" id="evTariff">
+            <option value="0.07">Off-peak / EV tariff (7p/kWh)</option>
+            <option value="0.10">Economy 7 off-peak (10p/kWh)</option>
+            <option value="0.245" selected>Standard variable (24.5p/kWh)</option>
+            <option value="0.34">Peak rate (34p/kWh)</option>
+          </select>
+        </div>
+        <div class="calc-input-group"><label class="calc-label">Home Charger Type</label><span class="calc-sublabel">Charger speed determines overnight charge</span>
+          <select class="calc-select" id="evCharger">
+            <option value="3.6">3-pin plug (3.6 kW — slow)</option>
+            <option value="7" selected>7 kW wallbox (standard)</option>
+            <option value="22">22 kW wallbox (3-phase)</option>
+          </select>
+        </div>
+        <div class="calc-btn"><button class="btn-primary" onclick="calcEV()" style="width:100%;justify-content:center;padding:1rem;">🚗 Calculate EV Costs</button></div>
+        <div class="calc-results" id="evResults">
+          <div class="results-grid">
+            <div class="result-card"><div class="result-value" style="color:var(--green);" id="evHomeCost">—</div><div class="result-label">Home Charging / Month</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--red);" id="evPublicCost">—</div><div class="result-label">Public Charging / Month</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--amber);" id="evSaving">—</div><div class="result-label">Monthly Saving (Home)</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--teal);" id="evPetrolSave">—</div><div class="result-label">vs Petrol Savings / Year</div></div>
+          </div>
+          <div class="results-grid" style="margin-top:1rem;">
+            <div class="result-card"><div class="result-value" style="color:var(--slate-light);" id="evCostMile">—</div><div class="result-label">Cost per Mile (Home)</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--amber-light);" id="evChargeTime">—</div><div class="result-label">Full Charge Time</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--green);" id="evRange">—</div><div class="result-label">Est. Full Range</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--teal);" id="evChargerCost">—</div><div class="result-label">Charger Install Cost</div></div>
+          </div>
+          <div class="savings-bar" style="margin-top:1.25rem;"><div class="bar-label"><span style="color:var(--slate-light);">Home vs Public Savings</span><span style="color:var(--green);font-weight:700;" id="evSavePct">—</span></div><div class="bar-track"><div class="bar-fill" id="evBar" style="width:0%;"></div></div></div>
+          <div class="result-card" style="margin-top:1rem;background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2);"><div class="result-value" style="color:var(--green);" id="evAnnualTotal">—</div><div class="result-label">Total Annual Savings vs Petrol + Public Charging</div></div>
+          <div class="result-note"><strong style="color:var(--teal);">📌 Note:</strong> Estimates assume 3.5 miles/kWh efficiency (varies by driving style and weather). Public charging averaged at 65p/kWh. Petrol comparison based on 45mpg at £1.45/litre. Charger install cost is pre-grant — you may qualify for a £350 OZEV grant (renters/flat owners). EV-specific tariffs like Octopus Go or Intelligent Octopus can reduce home charging to 7p/kWh.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLAR + EV COMBO -->
+  <div class="calc-panel" id="calcPanel-combo">
+    <div class="calc-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Solar + EV: The Full Picture</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:0.5rem;">See the combined savings when you pair solar panels with home EV charging.</p>
+      <div class="calc-grid">
+        <div class="calc-input-group"><label class="calc-label">Monthly Electricity Bill</label><span class="calc-sublabel">Your current bill in £</span><input type="number" class="calc-input" id="comboBill" placeholder="e.g. 150" min="0"></div>
+        <div class="calc-input-group"><label class="calc-label">Roof Size</label><select class="calc-select" id="comboRoof"><option value="20">Small (20 m²)</option><option value="30" selected>Medium (30 m²)</option><option value="45">Large (45 m²)</option><option value="60">Very Large (60 m²)</option></select></div>
+        <div class="calc-input-group"><label class="calc-label">Region</label><select class="calc-select" id="comboRegion"><option value="1050">South England</option><option value="1000">Midlands</option><option value="950">North England</option><option value="900">Scotland</option><option value="1000">Wales</option><option value="950">Northern Ireland</option></select></div>
+        <div class="calc-input-group"><label class="calc-label">Daily Miles Driven</label><span class="calc-sublabel">Average daily EV miles</span><input type="number" class="calc-input" id="comboMiles" placeholder="e.g. 30" min="0" value="30"></div>
+        <div class="calc-btn"><button class="btn-primary" onclick="calcCombo()" style="width:100%;justify-content:center;padding:1rem;">☀️🔌 Calculate Combined Savings</button></div>
+        <div class="calc-results" id="comboResults">
+          <div class="results-grid">
+            <div class="result-card"><div class="result-value" style="color:var(--amber);" id="comboSolarSave">—</div><div class="result-label">Solar Bill Savings / Year</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--green);" id="comboEvSave">—</div><div class="result-label">EV Fuel Savings / Year</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--teal);" id="comboTotalSave">—</div><div class="result-label">Total Annual Savings</div></div>
+            <div class="result-card"><div class="result-value" style="color:var(--amber-light);" id="comboTotalCost">—</div><div class="result-label">Total System Cost</div></div>
+          </div>
+          <div class="result-card" style="margin-top:1rem;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);"><div class="result-value" style="color:var(--amber);" id="comboPayback">—</div><div class="result-label">Combined Payback Period</div></div>
+          <div class="result-card" style="margin-top:0.75rem;background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2);"><div class="result-value" style="color:var(--green);" id="combo25yr">—</div><div class="result-label">25-Year Total Savings (Solar + EV vs Grid + Petrol)</div></div>
+          <div class="result-note"><strong style="color:var(--teal);">☀️🔌 The Power Combo:</strong> When you charge your EV from your own solar panels, your fuel cost drops to effectively £0 per mile during sunny hours. Even on a cloudy day, a 4kWp system can generate enough to drive 25-30 miles. Over 25 years, the combined solar + EV setup typically saves £30,000–£50,000 compared to grid electricity + petrol.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -562,21 +656,17 @@ function switchTool(id){
   event.target.classList.add('active');
 }
 
-// AI API CALL
+// AI API CALL — routes through Netlify serverless function to OpenAI
 async function callAI(sysPrompt, userMsg){
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/ai',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:sysPrompt,
-        messages:[{role:'user',content:userMsg}]
-      })
+      body:JSON.stringify({system:sysPrompt,message:userMsg})
     });
     const d=await r.json();
-    return d.content.map(c=>c.text||'').join('\n');
+    if(d.error) return 'Sorry, something went wrong: '+d.error;
+    return d.reply;
   }catch(e){
     return 'Sorry, I couldn\'t process that right now. Please try again in a moment.';}
 }
@@ -668,6 +758,9 @@ Always include these UK schemes where relevant:
 - Northern Ireland Sustainable Energy Programme
 - Local authority grants
 - Energy Company Obligation schemes
+- OZEV EV Chargepoint Grant — up to £350 or 75% of install costs for renters, flat owners, and landlords. NOT available for most homeowners with driveways. Deadline: March 31, 2026. Must use OZEV-approved installer. Smart charger required.
+- Workplace Charging Scheme — for businesses, up to £350 per socket, max 40 sockets
+- EV salary sacrifice schemes — can save 20-50% on EV + charger costs
 
 Be honest about eligibility — if they likely don't qualify, say so. Note that schemes change regularly and recommend checking gov.uk for latest info. Keep response under 400 words.`;
 
@@ -711,6 +804,14 @@ async function reviewQuote(){
   body.innerHTML='<p>'+formatAI(reply)+'</p>';
 }
 
+// CALC TABS
+function switchCalc(id,btn){
+  document.querySelectorAll('.calc-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('calcPanel-'+id).classList.add('active');
+  btn.parentElement.querySelectorAll('.tool-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
 // SOLAR CALCULATOR
 function calcSolar(){
   const bill=parseFloat(document.getElementById('calcBill').value);
@@ -736,6 +837,81 @@ function calcSolar(){
   document.getElementById('resBar').style.width=Math.round(pct)+'%';
   document.getElementById('res25yr').textContent='£'+Math.round(net25).toLocaleString();
   document.getElementById('calcResults').classList.add('show');
+}
+
+// EV CHARGING CALCULATOR
+function calcEV(){
+  const bat=parseFloat(document.getElementById('evBattery').value);
+  const miles=parseFloat(document.getElementById('evMiles').value);
+  const tariff=parseFloat(document.getElementById('evTariff').value);
+  const charger=parseFloat(document.getElementById('evCharger').value);
+  if(!miles||miles<=0){alert('Please enter your daily miles.');return;}
+  const eff=3.5; // miles per kWh
+  const dailyKwh=miles/eff;
+  const monthlyKwh=dailyKwh*30;
+  const homeMonth=monthlyKwh*tariff;
+  const publicRate=0.65;
+  const publicMonth=monthlyKwh*publicRate;
+  const savingMonth=publicMonth-homeMonth;
+  const savePct=((savingMonth/publicMonth)*100);
+  const costMile=tariff/eff;
+  const chargeTime=bat/charger;
+  const range=bat*eff;
+  const petrolMileCost=1.45/(45*0.00454); // £/litre / (mpg * litres_per_mile)
+  const petrolYear=(miles*365)*petrolMileCost;
+  const evYear=(miles*365/eff)*tariff;
+  const petrolSave=petrolYear-evYear;
+  const chargerInstall=charger<=3.6?0:charger<=7?1110:2500;
+  const annualTotal=petrolSave+((savingMonth)*12);
+  document.getElementById('evHomeCost').textContent='£'+Math.round(homeMonth);
+  document.getElementById('evPublicCost').textContent='£'+Math.round(publicMonth);
+  document.getElementById('evSaving').textContent='£'+Math.round(savingMonth);
+  document.getElementById('evPetrolSave').textContent='£'+Math.round(petrolSave).toLocaleString();
+  document.getElementById('evCostMile').textContent=(costMile*100).toFixed(1)+'p';
+  document.getElementById('evChargeTime').textContent=chargeTime.toFixed(1)+' hrs';
+  document.getElementById('evRange').textContent=Math.round(range)+' miles';
+  document.getElementById('evChargerCost').textContent=chargerInstall===0?'N/A (plug)':'£'+chargerInstall.toLocaleString();
+  document.getElementById('evSavePct').textContent=Math.round(savePct)+'%';
+  document.getElementById('evBar').style.width=Math.round(savePct)+'%';
+  document.getElementById('evAnnualTotal').textContent='£'+Math.round(petrolSave).toLocaleString();
+  document.getElementById('evResults').classList.add('show');
+}
+
+// SOLAR + EV COMBO
+function calcCombo(){
+  const bill=parseFloat(document.getElementById('comboBill').value);
+  const miles=parseFloat(document.getElementById('comboMiles').value);
+  if(!bill||bill<=0){alert('Please enter your monthly bill.');return;}
+  if(!miles||miles<=0){alert('Please enter daily miles.');return;}
+  const roof=parseFloat(document.getElementById('comboRoof').value);
+  const sun=parseFloat(document.getElementById('comboRegion').value);
+  const kWp=Math.min(roof/6.5,12);
+  const gen=kWp*sun*0.87; // assume avg direction
+  const annBill=bill*12;
+  const selfCons=gen*0.50*0.34;
+  const exp=gen*0.50*0.08;
+  const solarSave=selfCons+exp;
+  const solarCost=kWp*1500;
+  const eff=3.5;
+  const evKwhYear=(miles*365)/eff;
+  const solarEvShare=Math.min(gen*0.25,evKwhYear); // 25% of solar to EV
+  const evSolarSave=solarEvShare*0.34; // free miles from solar
+  const evGridKwh=evKwhYear-solarEvShare;
+  const evGridCost=evGridKwh*0.10; // assume EV tariff
+  const petrolCost=(miles*365)*(1.45/(45*4.546))*100;
+  const evFuelSave=petrolCost-evGridCost-0; // solar portion is free
+  const chargerCost=1110;
+  const totalCost=solarCost+chargerCost;
+  const totalSave=solarSave+evFuelSave;
+  const payback=totalCost/totalSave;
+  const net25=(totalSave*25)-totalCost;
+  document.getElementById('comboSolarSave').textContent='£'+Math.round(solarSave).toLocaleString();
+  document.getElementById('comboEvSave').textContent='£'+Math.round(evFuelSave).toLocaleString();
+  document.getElementById('comboTotalSave').textContent='£'+Math.round(totalSave).toLocaleString();
+  document.getElementById('comboTotalCost').textContent='£'+Math.round(totalCost).toLocaleString();
+  document.getElementById('comboPayback').textContent=payback.toFixed(1)+' years';
+  document.getElementById('combo25yr').textContent='£'+Math.round(net25).toLocaleString();
+  document.getElementById('comboResults').classList.add('show');
 }
 
 // NEWSLETTER
