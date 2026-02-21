@@ -1,10 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SovereignWatt — Clean Energy Intelligence</title>
-<meta name="description" content="SovereignWatt is your trusted source for clean energy insights, tools, and intelligence. Make smarter energy decisions.">
+<meta name="description" content="SovereignWatt is your AI-powered clean energy platform. Free tools, insights, and intelligence for smarter energy decisions.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -13,18 +13,17 @@
     --amber:#F59E0B;--amber-light:#FBBF24;--amber-dark:#D97706;
     --teal:#06B6D4;--teal-light:#22D3EE;
     --slate:#94A3B8;--slate-light:#CBD5E1;
-    --white:#FFFFFF;--off-white:#F8FAFC;
-    --green:#34D399;--red:#F87171;
+    --white:#FFFFFF;--green:#34D399;--red:#F87171;
   }
   body{font-family:'Inter',-apple-system,sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;}
   html{scroll-behavior:smooth;}
 
   /* NAV */
-  nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,22,40,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,158,11,0.1);}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,22,40,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,158,11,0.1);}
   .logo{display:flex;align-items:center;gap:0.5rem;text-decoration:none;}
   .logo img{height:44px;width:auto;}
-  .nav-links{display:flex;gap:2rem;align-items:center;list-style:none;}
-  .nav-links a{color:var(--slate-light);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.3s;}
+  .nav-links{display:flex;gap:1.5rem;align-items:center;list-style:none;}
+  .nav-links a{color:var(--slate-light);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.3s;}
   .nav-links a:hover{color:var(--amber);}
   .nav-cta{background:var(--amber);color:var(--navy)!important;padding:0.5rem 1.2rem;border-radius:8px;font-weight:600!important;transition:background 0.3s!important;}
   .nav-cta:hover{background:var(--amber-light)!important;}
@@ -38,112 +37,173 @@
   .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);padding:0.4rem 1rem;border-radius:50px;font-size:0.85rem;color:var(--amber);margin-bottom:2rem;font-weight:500;}
   .hero-badge .dot{width:8px;height:8px;background:var(--amber);border-radius:50%;animation:blink 2s infinite;}
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-  h1{font-size:clamp(2.5rem,6vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-0.03em;}
+  h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-0.03em;}
   h1 .highlight{background:linear-gradient(135deg,var(--amber),var(--amber-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .hero-sub{font-size:1.2rem;color:var(--slate);line-height:1.7;margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;}
+  .hero-sub{font-size:1.15rem;color:var(--slate);line-height:1.7;margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;}
   .hero-cta-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
   .btn-primary{background:var(--amber);color:var(--navy);padding:0.85rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;font-family:'Inter',sans-serif;}
   .btn-primary:hover{background:var(--amber-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,158,11,0.3);}
   .btn-secondary{background:transparent;color:var(--white);padding:0.85rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid rgba(255,255,255,0.2);transition:all 0.3s;}
-  .btn-secondary:hover{border-color:var(--teal);color:var(--teal);background:rgba(6,182,212,0.05);}
+  .btn-secondary:hover{border-color:var(--teal);color:var(--teal);}
   .stats-bar{display:flex;justify-content:center;gap:3rem;margin-top:4rem;flex-wrap:wrap;}
   .stat{text-align:center;}
   .stat-number{font-size:1.8rem;font-weight:800;color:var(--amber);}
   .stat-label{font-size:0.8rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem;}
 
   /* SECTIONS */
-  section{padding:6rem 2rem;}
+  section{padding:5rem 2rem;}
   .section-label{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--teal);font-weight:600;margin-bottom:1rem;}
   .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em;}
   .section-desc{color:var(--slate);font-size:1.05rem;line-height:1.7;max-width:600px;}
 
+  /* AI TOOLS HUB */
+  .ai-tools{background:var(--navy-light);}
+  .ai-tools-header{text-align:center;margin-bottom:3rem;}
+  .ai-tools-header .section-desc{margin:0 auto;}
+  .tools-nav{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+  .tool-tab{padding:0.7rem 1.5rem;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--slate-light);font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;}
+  .tool-tab:hover{border-color:var(--amber);color:var(--amber);}
+  .tool-tab.active{background:var(--amber);color:var(--navy);border-color:var(--amber);}
+  .tool-panel{display:none;max-width:800px;margin:0 auto;}
+  .tool-panel.active{display:block;}
+  .tool-container{background:var(--navy);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2rem;position:relative;overflow:hidden;}
+  .tool-container::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--teal));}
+
+  /* CHAT */
+  .chat-box{height:380px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;scrollbar-width:thin;scrollbar-color:var(--navy-mid) transparent;}
+  .chat-msg{max-width:85%;padding:0.85rem 1.1rem;border-radius:14px;font-size:0.92rem;line-height:1.6;animation:fadeIn 0.3s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .chat-user{align-self:flex-end;background:var(--amber);color:var(--navy);border-bottom-right-radius:4px;}
+  .chat-ai{align-self:flex-start;background:var(--navy-mid);color:var(--slate-light);border-bottom-left-radius:4px;border:1px solid rgba(255,255,255,0.06);}
+  .chat-ai strong{color:var(--white);}
+  .chat-input-row{display:flex;gap:0.75rem;}
+  .chat-input{flex:1;padding:0.85rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:var(--navy-mid);color:var(--white);font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;transition:border 0.3s;}
+  .chat-input:focus{border-color:var(--amber);}
+  .chat-input::placeholder{color:var(--slate);}
+  .chat-send{padding:0.85rem 1.5rem;border-radius:12px;background:var(--amber);color:var(--navy);border:none;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.95rem;transition:all 0.3s;}
+  .chat-send:hover{background:var(--amber-light);}
+  .chat-send:disabled{opacity:0.5;cursor:not-allowed;}
+  .quick-qs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .quick-q{padding:0.4rem 0.85rem;border-radius:20px;border:1px solid rgba(6,182,212,0.3);background:rgba(6,182,212,0.06);color:var(--teal);font-size:0.8rem;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;}
+  .quick-q:hover{background:rgba(6,182,212,0.15);border-color:var(--teal);}
+
+  /* BILL ANALYSER */
+  .upload-zone{border:2px dashed rgba(245,158,11,0.3);border-radius:16px;padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;margin-bottom:1rem;}
+  .upload-zone:hover{border-color:var(--amber);background:rgba(245,158,11,0.03);}
+  .upload-zone.dragover{border-color:var(--amber);background:rgba(245,158,11,0.06);}
+  .upload-icon{font-size:2.5rem;margin-bottom:0.75rem;}
+  .upload-zone p{color:var(--slate);font-size:0.95rem;}
+  .upload-zone .upload-cta{color:var(--amber);font-weight:600;}
+  .bill-input{width:100%;min-height:120px;padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:var(--navy-mid);color:var(--white);font-size:0.92rem;font-family:'Inter',sans-serif;outline:none;resize:vertical;line-height:1.6;margin-bottom:1rem;}
+  .bill-input::placeholder{color:var(--slate);}
+
+  /* GRANT FINDER */
+  .grant-form{display:flex;flex-direction:column;gap:1.25rem;}
+  .grant-group{display:flex;flex-direction:column;gap:0.4rem;}
+  .grant-label{font-size:0.88rem;color:var(--slate-light);font-weight:600;}
+  .grant-select,.grant-input-field{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:0.8rem 1rem;color:var(--white);font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;width:100%;transition:border 0.3s;appearance:none;}
+  .grant-select:focus,.grant-input-field:focus{border-color:var(--amber);}
+  .grant-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+  /* RESULTS */
+  .ai-result{margin-top:1.5rem;padding:1.5rem;background:var(--navy-mid);border:1px solid rgba(255,255,255,0.08);border-radius:14px;display:none;}
+  .ai-result.show{display:block;animation:fadeIn 0.4s ease;}
+  .ai-result h3{font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--amber);}
+  .ai-result-body{color:var(--slate-light);font-size:0.92rem;line-height:1.8;}
+  .ai-result-body strong{color:var(--white);}
+  .ai-result-body p{margin-bottom:0.75rem;}
+
+  /* LOADING */
+  .loading{display:inline-flex;align-items:center;gap:0.5rem;color:var(--teal);font-size:0.9rem;padding:0.75rem 0;}
+  .loading-dots span{width:6px;height:6px;background:var(--teal);border-radius:50%;display:inline-block;animation:bounce 1.2s infinite;}
+  .loading-dots span:nth-child(2){animation-delay:0.2s;}
+  .loading-dots span:nth-child(3){animation-delay:0.4s;}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-8px);}}
+
   /* FEATURES */
-  .features{background:var(--navy-light);}
-  .features-header{text-align:center;margin-bottom:4rem;}
+  .features{background:var(--navy);}
+  .features-header{text-align:center;margin-bottom:3rem;}
   .features-header .section-desc{margin:0 auto;}
-  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1100px;margin:0 auto;}
-  .feature-card{background:var(--navy);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:2rem;transition:all 0.4s;position:relative;overflow:hidden;}
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto;}
+  .feature-card{background:var(--navy-light);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.75rem;transition:all 0.4s;position:relative;overflow:hidden;cursor:pointer;}
   .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--teal));opacity:0;transition:opacity 0.4s;}
   .feature-card:hover{border-color:rgba(245,158,11,0.2);transform:translateY(-4px);}
   .feature-card:hover::before{opacity:1;}
-  .feature-icon{width:48px;height:48px;background:rgba(245,158,11,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;}
-  .feature-card h3{font-size:1.15rem;font-weight:700;margin-bottom:0.75rem;}
-  .feature-card p{color:var(--slate);font-size:0.95rem;line-height:1.6;}
+  .feature-icon{font-size:1.5rem;margin-bottom:1rem;}
+  .feature-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;}
+  .feature-card p{color:var(--slate);font-size:0.9rem;line-height:1.6;}
 
   /* CALCULATOR */
-  .calculator{background:var(--navy);max-width:900px;margin:0 auto;}
-  .calc-container{background:var(--navy-light);border:1px solid rgba(245,158,11,0.15);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;}
+  .calc-container{background:var(--navy-light);border:1px solid rgba(245,158,11,0.15);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;max-width:900px;margin:0 auto;}
   .calc-container::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--teal));}
-  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;}
-  .calc-input-group{display:flex;flex-direction:column;gap:0.5rem;}
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
+  .calc-input-group{display:flex;flex-direction:column;gap:0.4rem;}
   .calc-label{font-size:0.85rem;color:var(--slate-light);font-weight:600;}
   .calc-sublabel{font-size:0.75rem;color:var(--slate);}
-  .calc-input{background:var(--navy);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:0.85rem 1rem;color:var(--white);font-size:1rem;font-family:'Inter',sans-serif;outline:none;transition:border 0.3s;width:100%;}
-  .calc-input:focus{border-color:var(--amber);}
-  .calc-select{background:var(--navy);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:0.85rem 1rem;color:var(--white);font-size:1rem;font-family:'Inter',sans-serif;outline:none;transition:border 0.3s;width:100%;appearance:none;cursor:pointer;}
-  .calc-select:focus{border-color:var(--amber);}
-  .calc-btn{grid-column:1/-1;margin-top:0.5rem;}
+  .calc-input,.calc-select{background:var(--navy);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:0.8rem 1rem;color:var(--white);font-size:1rem;font-family:'Inter',sans-serif;outline:none;width:100%;transition:border 0.3s;}
+  .calc-select{appearance:none;cursor:pointer;}
+  .calc-input:focus,.calc-select:focus{border-color:var(--amber);}
+  .calc-btn{grid-column:1/-1;}
   .calc-results{display:none;grid-column:1/-1;margin-top:1rem;}
   .calc-results.show{display:block;}
-  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1rem;}
-  .result-card{background:var(--navy);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.25rem;text-align:center;}
-  .result-value{font-size:1.8rem;font-weight:800;margin-bottom:0.25rem;}
-  .result-label{font-size:0.8rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1rem;}
+  .result-card{background:var(--navy);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.2rem;text-align:center;}
+  .result-value{font-size:1.6rem;font-weight:800;margin-bottom:0.25rem;}
+  .result-label{font-size:0.78rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;}
   .result-note{font-size:0.85rem;color:var(--slate);margin-top:1.5rem;line-height:1.6;padding:1rem;background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.15);border-radius:10px;}
-  .savings-bar{margin-top:1.5rem;}
-  .bar-label{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.5rem;}
-  .bar-track{height:12px;background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden;}
+  .savings-bar{margin-top:1.25rem;}
+  .bar-label{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.4rem;}
+  .bar-track{height:10px;background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden;}
   .bar-fill{height:100%;border-radius:6px;transition:width 1s ease;background:linear-gradient(90deg,var(--amber),var(--green));}
 
   /* BLOG */
   .blog-section{max-width:900px;margin:0 auto;}
   .blog-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
-  .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-bottom:3rem;}
+  .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:2rem;}
   .blog-card{background:var(--navy-light);border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer;}
   .blog-card:hover{border-color:rgba(6,182,212,0.3);transform:translateY(-3px);}
-  .blog-card-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
-  .blog-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(245,158,11,0.1));}
-  .blog-card-body{padding:1.5rem;}
-  .blog-tag{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);font-weight:600;margin-bottom:0.5rem;}
-  .blog-card-body h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;line-height:1.4;}
-  .blog-card-body p{color:var(--slate);font-size:0.9rem;line-height:1.6;}
-  .blog-date{font-size:0.8rem;color:var(--slate);margin-top:0.75rem;}
+  .blog-card-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--navy-mid),var(--navy));}
+  .blog-card-body{padding:1.25rem;}
+  .blog-tag{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);font-weight:600;margin-bottom:0.4rem;}
+  .blog-card-body h3{font-size:1rem;font-weight:700;margin-bottom:0.4rem;line-height:1.4;}
+  .blog-card-body p{color:var(--slate);font-size:0.88rem;line-height:1.5;}
+  .blog-date{font-size:0.78rem;color:var(--slate);margin-top:0.5rem;}
 
   /* BLOG ARTICLE */
   .blog-article{display:none;max-width:750px;margin:0 auto;}
   .blog-article.show{display:block;}
-  .blog-article-back{display:inline-flex;align-items:center;gap:0.5rem;color:var(--teal);text-decoration:none;font-size:0.9rem;font-weight:600;margin-bottom:2rem;cursor:pointer;transition:color 0.3s;}
+  .blog-article-back{display:inline-flex;align-items:center;gap:0.5rem;color:var(--teal);text-decoration:none;font-size:0.9rem;font-weight:600;margin-bottom:2rem;cursor:pointer;}
   .blog-article-back:hover{color:var(--amber);}
   .blog-article-tag{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);font-weight:600;margin-bottom:0.75rem;}
-  .blog-article h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:0.75rem;line-height:1.2;}
+  .blog-article h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;margin-bottom:0.75rem;line-height:1.2;}
   .blog-article .article-meta{font-size:0.85rem;color:var(--slate);margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);}
-  .blog-article .article-body p{color:var(--slate-light);font-size:1rem;line-height:1.8;margin-bottom:1.5rem;}
-  .blog-article .article-body h3{font-size:1.25rem;font-weight:700;color:var(--white);margin:2rem 0 1rem;}
+  .blog-article .article-body p{color:var(--slate-light);font-size:0.95rem;line-height:1.8;margin-bottom:1.25rem;}
+  .blog-article .article-body h3{font-size:1.2rem;font-weight:700;color:var(--white);margin:1.75rem 0 0.75rem;}
   .blog-article .article-body strong{color:var(--white);}
-  .blog-article .article-body .highlight-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:1.5rem;margin:1.5rem 0;}
-  .blog-article .article-body .highlight-box p{color:var(--slate-light);margin-bottom:0;}
-  .blog-article .article-body .stat-inline{color:var(--amber);font-weight:700;}
-  .article-cta{background:var(--navy-light);border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:2rem;text-align:center;margin-top:2.5rem;}
-  .article-cta h3{font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;}
-  .article-cta p{color:var(--slate);margin-bottom:1.25rem;font-size:0.95rem;}
+  .blog-article .highlight-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:1.25rem;margin:1.25rem 0;}
+  .blog-article .highlight-box p{margin-bottom:0.4rem;}
+  .stat-inline{color:var(--amber);font-weight:700;}
+  .article-cta{background:var(--navy-light);border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:2rem;text-align:center;margin-top:2rem;}
+  .article-cta h3{font-size:1.15rem;font-weight:700;margin-bottom:0.5rem;}
+  .article-cta p{color:var(--slate);margin-bottom:1rem;}
 
-  /* CTA / NEWSLETTER */
-  .cta-section{text-align:center;padding:6rem 2rem;}
+  /* CTA */
+  .cta-section{text-align:center;}
   .cta-box{max-width:600px;margin:0 auto;background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(245,158,11,0.2);border-radius:24px;padding:3rem 2rem;position:relative;overflow:hidden;}
   .cta-box::before{content:'';position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent 60%);}
   .cta-box>*{position:relative;z-index:1;}
   .cta-box h2{font-size:1.8rem;font-weight:800;margin-bottom:0.75rem;}
   .cta-box p{color:var(--slate);margin-bottom:2rem;line-height:1.6;}
   .email-form{display:flex;gap:0.75rem;max-width:450px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
-  .email-form input{flex:1;min-width:220px;padding:0.85rem 1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:var(--navy);color:var(--white);font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;transition:border 0.3s;}
+  .email-form input{flex:1;min-width:200px;padding:0.85rem 1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:var(--navy);color:var(--white);font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;}
   .email-form input:focus{border-color:var(--amber);}
   .email-form input::placeholder{color:var(--slate);}
 
   /* FOOTER */
-  footer{border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;text-align:center;}
+  footer{border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 2rem;}
   .footer-content{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
   .footer-links{display:flex;gap:1.5rem;list-style:none;}
-  .footer-links a{color:var(--slate);text-decoration:none;font-size:0.85rem;transition:color 0.3s;}
+  .footer-links a{color:var(--slate);text-decoration:none;font-size:0.85rem;}
   .footer-links a:hover{color:var(--amber);}
   .footer-copy{color:var(--slate);font-size:0.85rem;}
   .footer-email a{color:var(--teal);text-decoration:none;font-size:0.85rem;}
@@ -154,14 +214,13 @@
     .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;padding:1.5rem;gap:1rem;border-bottom:1px solid rgba(245,158,11,0.1);}
     .nav-links.open{display:flex;}
     .mobile-menu{display:block;}
-    .stats-bar{gap:1.5rem;}
     .calc-grid{grid-template-columns:1fr;}
-    .blog-header{flex-direction:column;align-items:flex-start;}
+    .grant-row{grid-template-columns:1fr;}
+    .tools-nav{gap:0.4rem;}
+    .tool-tab{padding:0.5rem 1rem;font-size:0.82rem;}
     .footer-content{flex-direction:column;text-align:center;}
   }
-
-  /* ANIMATIONS */
-  .anim{opacity:0;transform:translateY(30px);transition:all 0.6s ease;}
+  .anim{opacity:0;transform:translateY(25px);transition:all 0.6s ease;}
   .anim.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
@@ -174,7 +233,7 @@
   </a>
   <button class="mobile-menu" onclick="toggleMenu()">☰</button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about" onclick="showHome()">About</a></li>
+    <li><a href="#ai-tools" onclick="showHome()">AI Tools</a></li>
     <li><a href="#calculator" onclick="showHome()">Calculator</a></li>
     <li><a href="#blog" onclick="showHome()">Blog</a></li>
     <li><a href="#subscribe" class="nav-cta">Get Updates</a></li>
@@ -184,17 +243,186 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span>Now Live — Free Tools & Insights</div>
-    <h1>Take Control of Your <span class="highlight">Energy Future</span></h1>
-    <p class="hero-sub">SovereignWatt is your intelligence platform for clean energy decisions. Insights, tools, and analysis to help you save money and go independent.</p>
+    <div class="hero-badge"><span class="dot"></span>Now Live — AI-Powered Energy Tools</div>
+    <h1>Your AI-Powered <span class="highlight">Energy Advisor</span></h1>
+    <p class="hero-sub">SovereignWatt uses AI to give you personalised clean energy advice, analyse your bills, find grants you qualify for, and review installer quotes — all free.</p>
     <div class="hero-cta-group">
-      <a href="#calculator" class="btn-primary">Try Solar Calculator →</a>
-      <a href="#blog" class="btn-secondary">Read Insights</a>
+      <a href="#ai-tools" class="btn-primary">Try AI Tools Free →</a>
+      <a href="#calculator" class="btn-secondary">Solar Calculator</a>
     </div>
     <div class="stats-bar">
-      <div class="stat"><div class="stat-number">30%</div><div class="stat-label">Avg. Energy Savings</div></div>
-      <div class="stat"><div class="stat-number">£0</div><div class="stat-label">Free to Use</div></div>
-      <div class="stat"><div class="stat-number">6-8yr</div><div class="stat-label">Solar Payback</div></div>
+      <div class="stat"><div class="stat-number">4</div><div class="stat-label">AI Tools</div></div>
+      <div class="stat"><div class="stat-number">£0</div><div class="stat-label">Always Free</div></div>
+      <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">Instant Answers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS HUB -->
+<section class="ai-tools" id="ai-tools">
+  <div class="ai-tools-header">
+    <div class="section-label">AI-Powered Tools</div>
+    <h2 class="section-title">Your Clean Energy AI Suite</h2>
+    <p class="section-desc">Four free AI tools to help you make confident energy decisions. No signup required.</p>
+  </div>
+
+  <div class="tools-nav">
+    <button class="tool-tab active" onclick="switchTool('advisor')">⚡ Energy Advisor</button>
+    <button class="tool-tab" onclick="switchTool('bill')">📄 Bill Analyser</button>
+    <button class="tool-tab" onclick="switchTool('grants')">💰 Grant Finder</button>
+    <button class="tool-tab" onclick="switchTool('quote')">🔍 Quote Reviewer</button>
+  </div>
+
+  <!-- TOOL 1: AI ENERGY ADVISOR -->
+  <div class="tool-panel active" id="panel-advisor">
+    <div class="tool-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Ask SovereignWatt</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:1rem;">Ask anything about solar, batteries, energy saving, grants, or going off-grid in the UK.</p>
+      <div class="quick-qs">
+        <button class="quick-q" onclick="askQuick('Is solar worth it for a terraced house in Manchester?')">Solar for terraced house?</button>
+        <button class="quick-q" onclick="askQuick('Should I get a battery with solar panels?')">Battery worth it?</button>
+        <button class="quick-q" onclick="askQuick('What grants are available for solar in 2026?')">Solar grants 2026?</button>
+        <button class="quick-q" onclick="askQuick('How much can I save with solar panels in the UK?')">How much can I save?</button>
+      </div>
+      <div class="chat-box" id="chatBox">
+        <div class="chat-ai">👋 Hi! I'm SovereignWatt's AI energy advisor. Ask me anything about solar panels, battery storage, energy bills, grants, or going energy-independent in the UK. I'll give you honest, personalised advice.</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" placeholder="Ask a question about clean energy..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" id="chatSend" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 2: BILL ANALYSER -->
+  <div class="tool-panel" id="panel-bill">
+    <div class="tool-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">AI Energy Bill Analyser</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:1.25rem;">Paste your energy bill details below and our AI will identify savings opportunities, recommend tariff switches, and estimate your solar potential.</p>
+      <textarea class="bill-input" id="billText" placeholder="Paste your bill details here. Include any of: supplier name, tariff name, monthly/quarterly amount, kWh usage, standing charges, payment method, property type, number of bedrooms...
+
+The more detail you provide, the better the analysis.
+
+Example:
+Supplier: British Gas
+Tariff: Flexible Oct 2025
+Monthly: £165
+Usage: 3,800 kWh/year electricity, 12,000 kWh/year gas
+Standing charge: 53p/day electricity
+3 bed semi-detached, South-facing roof
+Location: Birmingham"></textarea>
+      <button class="btn-primary" onclick="analyseBill()" style="width:100%;justify-content:center;">📊 Analyse My Bill</button>
+      <div class="ai-result" id="billResult">
+        <h3>📊 Bill Analysis</h3>
+        <div class="ai-result-body" id="billResultBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 3: GRANT FINDER -->
+  <div class="tool-panel" id="panel-grants">
+    <div class="tool-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">AI Grant & Incentive Finder</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:1.25rem;">Answer a few questions and we'll find every grant, rebate, and incentive you may qualify for.</p>
+      <div class="grant-form">
+        <div class="grant-row">
+          <div class="grant-group">
+            <label class="grant-label">Property Type</label>
+            <select class="grant-select" id="grantProperty">
+              <option value="detached">Detached house</option>
+              <option value="semi">Semi-detached</option>
+              <option value="terraced">Terraced house</option>
+              <option value="bungalow">Bungalow</option>
+              <option value="flat">Flat / Apartment</option>
+            </select>
+          </div>
+          <div class="grant-group">
+            <label class="grant-label">Ownership</label>
+            <select class="grant-select" id="grantOwnership">
+              <option value="owner">Owner-occupier</option>
+              <option value="landlord">Landlord</option>
+              <option value="tenant">Tenant</option>
+              <option value="housing-assoc">Housing association</option>
+            </select>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div class="grant-group">
+            <label class="grant-label">Region</label>
+            <select class="grant-select" id="grantRegion">
+              <option value="england">England</option>
+              <option value="scotland">Scotland</option>
+              <option value="wales">Wales</option>
+              <option value="ni">Northern Ireland</option>
+            </select>
+          </div>
+          <div class="grant-group">
+            <label class="grant-label">Household Income</label>
+            <select class="grant-select" id="grantIncome">
+              <option value="under-31k">Under £31,000</option>
+              <option value="31k-50k">£31,000 – £50,000</option>
+              <option value="over-50k">Over £50,000</option>
+              <option value="prefer-not">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div class="grant-group">
+            <label class="grant-label">EPC Rating (if known)</label>
+            <select class="grant-select" id="grantEpc">
+              <option value="unknown">Don't know</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E or below</option>
+            </select>
+          </div>
+          <div class="grant-group">
+            <label class="grant-label">What are you interested in?</label>
+            <select class="grant-select" id="grantInterest">
+              <option value="solar">Solar panels</option>
+              <option value="battery">Battery storage</option>
+              <option value="solar-battery">Solar + Battery</option>
+              <option value="heat-pump">Heat pump</option>
+              <option value="insulation">Insulation</option>
+              <option value="ev-charger">EV charger</option>
+              <option value="all">All of the above</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="findGrants()" style="width:100%;justify-content:center;">💰 Find My Grants</button>
+      </div>
+      <div class="ai-result" id="grantResult">
+        <h3>💰 Grants & Incentives You May Qualify For</h3>
+        <div class="ai-result-body" id="grantResultBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL 4: QUOTE REVIEWER -->
+  <div class="tool-panel" id="panel-quote">
+    <div class="tool-container">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">AI Quote Reviewer</h3>
+      <p style="color:var(--slate);font-size:0.88rem;margin-bottom:1.25rem;">Got a quote from a solar installer? Paste it below and our AI will check if the pricing is fair, flag anything missing, and suggest questions to ask.</p>
+      <textarea class="bill-input" id="quoteText" placeholder="Paste your installer quote details here. Include any of: system size (kWp), panel brand/model, inverter brand, number of panels, battery (if included), total cost, installation timeline, warranty terms, MCS certification...
+
+Example:
+Company: SunPower Solutions
+System: 4.2kWp
+Panels: 12x JA Solar 350W
+Inverter: GivEnergy 3.6kW hybrid
+Battery: GivEnergy 5.2kWh
+Scaffolding: included
+Total cost: £8,500 inc VAT
+Warranty: 25yr panels, 12yr inverter, 10yr battery
+Installation: 2 days
+MCS certified: Yes"></textarea>
+      <button class="btn-primary" onclick="reviewQuote()" style="width:100%;justify-content:center;">🔍 Review My Quote</button>
+      <div class="ai-result" id="quoteResult">
+        <h3>🔍 Quote Analysis</h3>
+        <div class="ai-result-body" id="quoteResultBody"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -202,153 +430,59 @@
 <!-- FEATURES -->
 <section class="features" id="about">
   <div class="features-header">
-    <div class="section-label">What We're Building</div>
+    <div class="section-label">Why SovereignWatt</div>
     <h2 class="section-title">Energy Intelligence, Simplified</h2>
-    <p class="section-desc">We're building the tools and insights you need to navigate the clean energy transition with confidence.</p>
+    <p class="section-desc">AI-powered tools and expert insights to navigate the clean energy transition.</p>
   </div>
   <div class="features-grid">
-    <div class="feature-card anim"><div class="feature-icon">⚡</div><h3>Solar Savings Calculator</h3><p>Estimate your solar payback period, annual savings, and ROI based on your location and energy usage.</p></div>
-    <div class="feature-card anim"><div class="feature-icon">📊</div><h3>Energy Market Insights</h3><p>Stay informed with curated analysis on energy prices, policy changes, and market trends that affect your bills.</p></div>
-    <div class="feature-card anim"><div class="feature-icon">🔋</div><h3>Independence Score</h3><p>Assess how energy-independent your home or business is, and get a personalised roadmap to go further.</p></div>
-    <div class="feature-card anim"><div class="feature-icon">💰</div><h3>Grants & Incentives Hub</h3><p>Find every available rebate, tax credit, and grant for clean energy in your area — updated regularly.</p></div>
-    <div class="feature-card anim"><div class="feature-icon">🌍</div><h3>Community Insights</h3><p>Learn from others who've made the switch. Real stories, real numbers, real results from energy adopters.</p></div>
-    <div class="feature-card anim"><div class="feature-icon">📰</div><h3>Weekly Briefing</h3><p>A concise weekly email with the most important clean energy news, deals, and opportunities you need to know.</p></div>
+    <div class="feature-card anim" onclick="location.href='#ai-tools'"><div class="feature-icon">🤖</div><h3>AI Energy Advisor</h3><p>Get instant, personalised answers to any clean energy question — 24/7.</p></div>
+    <div class="feature-card anim" onclick="location.href='#ai-tools'"><div class="feature-icon">📄</div><h3>Bill Analyser</h3><p>Paste your bill details and AI identifies savings, waste, and solar potential.</p></div>
+    <div class="feature-card anim" onclick="location.href='#ai-tools'"><div class="feature-icon">💰</div><h3>Grant Finder</h3><p>Find every grant, rebate, and incentive you qualify for in minutes.</p></div>
+    <div class="feature-card anim" onclick="location.href='#ai-tools'"><div class="feature-icon">🔍</div><h3>Quote Reviewer</h3><p>Get an honest AI second opinion on any installer quote before signing.</p></div>
+    <div class="feature-card anim" onclick="location.href='#calculator'"><div class="feature-icon">⚡</div><h3>Solar Calculator</h3><p>Estimate payback, savings, and system size for your specific property.</p></div>
+    <div class="feature-card anim" onclick="location.href='#blog'"><div class="feature-icon">📰</div><h3>Expert Blog</h3><p>Deep-dive analysis on solar, batteries, policy, and energy independence.</p></div>
   </div>
 </section>
 
 <!-- SOLAR CALCULATOR -->
-<section id="calculator" style="background:var(--navy);">
-  <div class="calculator">
-    <div style="text-align:center;margin-bottom:2rem;">
-      <div class="section-label">Free Tool</div>
-      <h2 class="section-title">Solar Savings Calculator</h2>
-      <p class="section-desc" style="margin:0 auto;">Enter your details below to estimate how much you could save by switching to solar energy.</p>
-    </div>
-    <div class="calc-container">
-      <div class="calc-grid">
-        <div class="calc-input-group">
-          <label class="calc-label">Monthly Electricity Bill</label>
-          <span class="calc-sublabel">Your average monthly bill in £</span>
-          <input type="number" class="calc-input" id="calcBill" placeholder="e.g. 150" min="0">
+<section id="calculator" style="background:var(--navy-light);">
+  <div style="text-align:center;margin-bottom:2rem;">
+    <div class="section-label">Free Tool</div>
+    <h2 class="section-title">Solar Savings Calculator</h2>
+    <p class="section-desc" style="margin:0 auto;">Estimate how much you could save by switching to solar energy.</p>
+  </div>
+  <div class="calc-container">
+    <div class="calc-grid">
+      <div class="calc-input-group"><label class="calc-label">Monthly Electricity Bill</label><span class="calc-sublabel">Your average monthly bill in £</span><input type="number" class="calc-input" id="calcBill" placeholder="e.g. 150" min="0"></div>
+      <div class="calc-input-group"><label class="calc-label">Roof Size</label><span class="calc-sublabel">Approximate usable roof area</span><select class="calc-select" id="calcRoof"><option value="20">Small (20 m²)</option><option value="30" selected>Medium (30 m²)</option><option value="45">Large (45 m²)</option><option value="60">Very Large (60 m²)</option></select></div>
+      <div class="calc-input-group"><label class="calc-label">Region</label><span class="calc-sublabel">Sunlight varies by region</span><select class="calc-select" id="calcRegion"><option value="1050">South England</option><option value="1000">Midlands</option><option value="950">North England</option><option value="900">Scotland</option><option value="1000">Wales</option><option value="950">Northern Ireland</option></select></div>
+      <div class="calc-input-group"><label class="calc-label">Roof Direction</label><span class="calc-sublabel">Main roof orientation</span><select class="calc-select" id="calcDirection"><option value="1.0">South</option><option value="0.87">South-East / South-West</option><option value="0.75">East / West</option><option value="0.55">North-East / North-West</option><option value="0.45">North</option></select></div>
+      <div class="calc-btn"><button class="btn-primary" onclick="calcSolar()" style="width:100%;justify-content:center;padding:1rem;">⚡ Calculate My Savings</button></div>
+      <div class="calc-results" id="calcResults">
+        <div class="results-grid">
+          <div class="result-card"><div class="result-value" style="color:var(--amber);" id="resSystem">—</div><div class="result-label">System Size (kWp)</div></div>
+          <div class="result-card"><div class="result-value" style="color:var(--green);" id="resSavings">—</div><div class="result-label">Annual Savings</div></div>
+          <div class="result-card"><div class="result-value" style="color:var(--teal);" id="resPayback">—</div><div class="result-label">Payback Period</div></div>
+          <div class="result-card"><div class="result-value" style="color:var(--amber-light);" id="resCost">—</div><div class="result-label">Est. System Cost</div></div>
         </div>
-        <div class="calc-input-group">
-          <label class="calc-label">Roof Size</label>
-          <span class="calc-sublabel">Approximate usable roof area</span>
-          <select class="calc-select" id="calcRoof">
-            <option value="20">Small (20 m²)</option>
-            <option value="30" selected>Medium (30 m²)</option>
-            <option value="45">Large (45 m²)</option>
-            <option value="60">Very Large (60 m²)</option>
-          </select>
-        </div>
-        <div class="calc-input-group">
-          <label class="calc-label">Region</label>
-          <span class="calc-sublabel">Sunlight hours vary by region</span>
-          <select class="calc-select" id="calcRegion">
-            <option value="1050">South England</option>
-            <option value="1000">Midlands</option>
-            <option value="950">North England</option>
-            <option value="900">Scotland</option>
-            <option value="1000">Wales</option>
-            <option value="950">Northern Ireland</option>
-          </select>
-        </div>
-        <div class="calc-input-group">
-          <label class="calc-label">Roof Direction</label>
-          <span class="calc-sublabel">Which way does your main roof face?</span>
-          <select class="calc-select" id="calcDirection">
-            <option value="1.0">South</option>
-            <option value="0.87">South-East / South-West</option>
-            <option value="0.75">East / West</option>
-            <option value="0.55">North-East / North-West</option>
-            <option value="0.45">North</option>
-          </select>
-        </div>
-        <div class="calc-btn">
-          <button class="btn-primary" onclick="calculateSolar()" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem;">⚡ Calculate My Savings</button>
-        </div>
-        <div class="calc-results" id="calcResults">
-          <div class="results-grid">
-            <div class="result-card">
-              <div class="result-value" style="color:var(--amber);" id="resSystem">—</div>
-              <div class="result-label">System Size (kWp)</div>
-            </div>
-            <div class="result-card">
-              <div class="result-value" style="color:var(--green);" id="resSavings">—</div>
-              <div class="result-label">Annual Savings</div>
-            </div>
-            <div class="result-card">
-              <div class="result-value" style="color:var(--teal);" id="resPayback">—</div>
-              <div class="result-label">Payback Period</div>
-            </div>
-            <div class="result-card">
-              <div class="result-value" style="color:var(--amber-light);" id="resCost">—</div>
-              <div class="result-label">Est. System Cost</div>
-            </div>
-          </div>
-          <div class="savings-bar">
-            <div class="bar-label">
-              <span style="color:var(--slate-light);">Energy Bill Reduction</span>
-              <span style="color:var(--green);font-weight:700;" id="resPct">—</span>
-            </div>
-            <div class="bar-track">
-              <div class="bar-fill" id="resBar" style="width:0%;"></div>
-            </div>
-          </div>
-          <div id="res25yr" class="result-card" style="margin-top:1rem;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);">
-            <div class="result-value" style="color:var(--amber);" id="res25yrVal">—</div>
-            <div class="result-label">25-Year Net Savings</div>
-          </div>
-          <div class="result-note">
-            <strong style="color:var(--teal);">📌 Note:</strong> These are estimates based on average UK energy prices (34p/kWh), typical solar panel efficiency, and Smart Export Guarantee payments. Actual savings depend on your specific situation, installer quotes, and energy usage patterns. We recommend getting 3 quotes from MCS-certified installers.
-          </div>
-        </div>
+        <div class="savings-bar"><div class="bar-label"><span style="color:var(--slate-light);">Bill Reduction</span><span style="color:var(--green);font-weight:700;" id="resPct">—</span></div><div class="bar-track"><div class="bar-fill" id="resBar" style="width:0%;"></div></div></div>
+        <div class="result-card" style="margin-top:1rem;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);"><div class="result-value" style="color:var(--amber);" id="res25yr">—</div><div class="result-label">25-Year Net Savings</div></div>
+        <div class="result-note"><strong style="color:var(--teal);">📌 Note:</strong> Estimates based on average UK energy prices (34p/kWh), typical panel efficiency, and SEG payments. Get 3 quotes from MCS-certified installers for accurate pricing.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- BLOG -->
-<section id="blog" style="background:var(--navy-light);">
+<section id="blog" style="background:var(--navy);">
   <div class="blog-section" id="blogList">
-    <div class="blog-header">
-      <div>
-        <div class="section-label">Latest Insights</div>
-        <h2 class="section-title">From the SovereignWatt Blog</h2>
-      </div>
-    </div>
+    <div class="blog-header"><div><div class="section-label">Latest Insights</div><h2 class="section-title">From the SovereignWatt Blog</h2></div></div>
     <div class="blog-grid">
-      <div class="blog-card anim" onclick="showArticle('article1')">
-        <div class="blog-card-img" style="background:linear-gradient(135deg,#1a2b45,#0a1628);">☀️</div>
-        <div class="blog-card-body">
-          <div class="blog-tag">Solar</div>
-          <h3>Is 2026 the Year to Go Solar? A Cost-Benefit Breakdown</h3>
-          <p>With panel prices dropping and energy costs rising, we crunch the numbers on the solar tipping point.</p>
-          <div class="blog-date">February 2026</div>
-        </div>
-      </div>
-      <div class="blog-card anim">
-        <div class="blog-card-img" style="background:linear-gradient(135deg,#1a2b45,#0a1628);">🔌</div>
-        <div class="blog-card-body">
-          <div class="blog-tag">Grid Independence</div>
-          <h3>Home Battery Storage: What You Need to Know Before Buying</h3>
-          <p>Tesla Powerwall vs BYD vs alternatives — an honest comparison for UK homeowners.</p>
-          <div class="blog-date">Coming Soon</div>
-        </div>
-      </div>
-      <div class="blog-card anim">
-        <div class="blog-card-img" style="background:linear-gradient(135deg,#1a2b45,#0a1628);">🏛️</div>
-        <div class="blog-card-body">
-          <div class="blog-tag">Policy</div>
-          <h3>UK Clean Energy Grants in 2026: The Complete Guide</h3>
-          <p>Every grant, incentive, and rebate available for UK homeowners going green.</p>
-          <div class="blog-date">Coming Soon</div>
-        </div>
-      </div>
+      <div class="blog-card anim" onclick="showArticle('article1')"><div class="blog-card-img">☀️</div><div class="blog-card-body"><div class="blog-tag">Solar</div><h3>Is 2026 the Year to Go Solar?</h3><p>Panel prices dropping, energy costs rising — we crunch the numbers.</p><div class="blog-date">February 2026</div></div></div>
+      <div class="blog-card anim"><div class="blog-card-img">🔌</div><div class="blog-card-body"><div class="blog-tag">Storage</div><h3>Home Battery Storage: What to Know Before Buying</h3><p>Tesla Powerwall vs BYD vs alternatives — an honest UK comparison.</p><div class="blog-date">Coming Soon</div></div></div>
+      <div class="blog-card anim"><div class="blog-card-img">🏛️</div><div class="blog-card-body"><div class="blog-tag">Policy</div><h3>UK Clean Energy Grants 2026: Complete Guide</h3><p>Every grant, incentive, and rebate for UK homeowners.</p><div class="blog-date">Coming Soon</div></div></div>
     </div>
   </div>
-
-  <!-- ARTICLE 1 -->
   <div class="blog-article" id="article1">
     <span class="blog-article-back" onclick="hideArticle()">← Back to all posts</span>
     <div class="blog-article-tag">Solar</div>
@@ -356,62 +490,43 @@
     <div class="article-meta">By SovereignWatt Team · February 2026 · 6 min read</div>
     <div class="article-body">
       <p>If you've been on the fence about solar panels, 2026 might be the year the numbers finally make it a no-brainer. Between falling installation costs, stubbornly high energy bills, and improving government incentives, the economics of rooftop solar in the UK have never looked better.</p>
-      <p>We've crunched the numbers so you don't have to. Here's what you need to know.</p>
-
       <h3>The Current State of Solar in the UK</h3>
-      <p>Solar panel costs have dropped by over <span class="stat-inline">60% in the last decade</span>. A typical 4kWp system — enough to power most of a three-bedroom home — now costs between <span class="stat-inline">£5,000 and £7,000</span> fully installed. That's down from £10,000+ just five years ago.</p>
-      <p>Meanwhile, the average UK household electricity bill sits around <span class="stat-inline">£1,800 per year</span> — a figure that's more than doubled since 2020. With energy prices showing no signs of returning to pre-crisis levels, the gap between grid electricity and self-generated solar power continues to widen.</p>
-
+      <p>Solar panel costs have dropped by over <span class="stat-inline">60% in the last decade</span>. A typical 4kWp system now costs between <span class="stat-inline">£5,000 and £7,000</span> fully installed — down from £10,000+ five years ago.</p>
+      <p>Meanwhile, the average UK household electricity bill sits around <span class="stat-inline">£1,800 per year</span> — more than doubled since 2020.</p>
       <h3>The Payback Equation</h3>
-      <p>Here's the simplified maths for a typical UK household:</p>
       <div class="highlight-box">
-        <p><strong style="color:var(--amber);">System cost:</strong> ~£6,000 for a 4kWp system</p>
-        <p><strong style="color:var(--green);">Annual generation:</strong> ~3,400 kWh (varies by region and roof orientation)</p>
-        <p><strong style="color:var(--teal);">Annual savings:</strong> ~£850–£1,100 (self-consumption + Smart Export Guarantee)</p>
-        <p><strong style="color:var(--amber-light);">Payback period:</strong> ~6–8 years</p>
-        <p><strong style="color:var(--green);">Panel lifespan:</strong> 25–30 years with 80%+ efficiency guaranteed</p>
+        <p><strong style="color:var(--amber);">System cost:</strong> ~£6,000 for 4kWp</p>
+        <p><strong style="color:var(--green);">Annual generation:</strong> ~3,400 kWh</p>
+        <p><strong style="color:var(--teal);">Annual savings:</strong> ~£850–£1,100</p>
+        <p><strong style="color:var(--amber-light);">Payback:</strong> ~6–8 years</p>
+        <p><strong style="color:var(--green);">Panel lifespan:</strong> 25–30 years</p>
       </div>
-      <p>That means after the payback period, you're looking at <span class="stat-inline">17–22 years of essentially free electricity</span>. Over the full 25-year lifespan, a typical system generates £15,000–£25,000 in net savings.</p>
-
+      <p>After payback, you're looking at <span class="stat-inline">17–22 years of essentially free electricity</span>. Over 25 years, a typical system generates £15,000–£25,000 in net savings.</p>
       <h3>What's Changed in 2026?</h3>
-      <p>Several factors are making 2026 particularly attractive for solar:</p>
-      <p><strong>Panel efficiency is up.</strong> Modern panels convert 20–22% of sunlight into electricity, compared to 15% a decade ago. That means more power from the same roof space.</p>
-      <p><strong>Battery storage is becoming affordable.</strong> Adding a home battery (£2,500–£4,500) lets you store daytime solar generation for evening use, pushing self-consumption from ~50% to ~80%. The economics of solar-plus-storage are now compelling for the first time.</p>
-      <p><strong>Smart Export Guarantee (SEG) rates are improving.</strong> Energy companies are now paying 4–15p per kWh for exported solar electricity. While this isn't as generous as the old Feed-in Tariff, it adds meaningful income on top of your bill savings.</p>
-      <p><strong>0% VAT on solar continues.</strong> The government's zero VAT rate on residential solar and battery installations — introduced in 2022 — remains in effect, saving you roughly £1,000–£1,400 on a typical installation.</p>
-
+      <p><strong>Panel efficiency is up.</strong> Modern panels convert 20–22% of sunlight vs 15% a decade ago.</p>
+      <p><strong>Battery storage is affordable.</strong> Adding a home battery (£2,500–£4,500) pushes self-consumption from ~50% to ~80%.</p>
+      <p><strong>SEG rates are improving.</strong> Companies pay 4–15p/kWh for exported solar electricity.</p>
+      <p><strong>0% VAT continues.</strong> Saving ~£1,000–£1,400 on a typical installation.</p>
       <h3>The "But It's the UK" Myth</h3>
-      <p>One of the most persistent myths is that the UK doesn't get enough sun for solar to work. The reality? The UK receives enough solar irradiance for panels to generate meaningful electricity even on cloudy days. Germany — which sits at a similar latitude — has been one of the world's largest solar markets for over a decade.</p>
-      <p>Solar panels don't need direct sunlight. They work with diffuse light too, which is why UK systems still generate power through cloud cover. A south-facing roof in southern England can generate over <span class="stat-inline">1,100 kWh per kWp per year</span> — more than enough to make the economics work.</p>
-
-      <h3>Should You Wait for Prices to Drop Further?</h3>
-      <p>This is the question we get asked most. While solar costs may continue to fall gradually, the savings you miss out on by waiting are significant. Every year you delay is another £800–£1,100 in electricity bills you could have avoided. At current trajectories, waiting 2 years to save £500 on installation costs means losing ~£2,000 in potential savings.</p>
-      <p>The optimal time to install solar is almost always "as soon as you can afford it."</p>
-
+      <p>Germany — at a similar latitude — has been one of the world's largest solar markets for over a decade. Solar panels work with diffuse light too, generating power through cloud cover. A south-facing roof in southern England can generate over <span class="stat-inline">1,100 kWh per kWp per year</span>.</p>
       <h3>Our Recommendation</h3>
-      <p>If you own your home, have a suitable roof, and plan to stay for at least 7–8 years, <strong>2026 is an excellent year to go solar</strong>. The combination of low costs, high energy prices, and supportive policy makes the ROI compelling.</p>
-      <p>Start by using our <a href="#calculator" onclick="hideArticle()" style="color:var(--amber);text-decoration:underline;">Solar Savings Calculator</a> above to get a personalised estimate. Then get 3 quotes from MCS-certified installers in your area to compare real prices.</p>
-      <p>The sun is free. Your electricity bill doesn't have to be far behind.</p>
+      <p>If you own your home, have a suitable roof, and plan to stay 7–8+ years, <strong>2026 is an excellent year to go solar</strong>. Use our <a href="#calculator" onclick="hideArticle()" style="color:var(--amber);">Solar Calculator</a> for a personalised estimate, or <a href="#ai-tools" onclick="hideArticle()" style="color:var(--teal);">ask our AI advisor</a> any questions.</p>
     </div>
-    <div class="article-cta">
-      <h3>Want to stay ahead on clean energy?</h3>
-      <p>Join our newsletter for weekly insights, tool launches, and exclusive analysis.</p>
-      <a href="#subscribe" class="btn-primary" onclick="hideArticle()">Join the Waitlist →</a>
-    </div>
+    <div class="article-cta"><h3>Want personalised advice?</h3><p>Ask our AI Energy Advisor for recommendations specific to your property.</p><a href="#ai-tools" class="btn-primary" onclick="hideArticle()">Ask AI Advisor →</a></div>
   </div>
 </section>
 
-<!-- CTA / NEWSLETTER -->
+<!-- CTA -->
 <section class="cta-section" id="subscribe">
   <div class="cta-box">
     <div class="section-label">Stay Ahead</div>
     <h2>Get Early Access</h2>
-    <p>Join our list to be first to access our tools, insights, and weekly energy briefing. No spam — just signal.</p>
+    <p>Join our list for weekly energy insights, new tool launches, and exclusive analysis.</p>
     <div class="email-form" id="formContainer">
       <input type="email" id="emailInput" name="email" placeholder="you@email.com" required />
       <button class="btn-primary" type="button" onclick="handleSubscribe()">Subscribe</button>
     </div>
-    <p id="formMsg" style="margin-top:1rem; font-size:0.9rem; display:none;"></p>
+    <p id="formMsg" style="margin-top:1rem;font-size:0.9rem;display:none;"></p>
     <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none;">
       <input type="hidden" name="form-name" value="waitlist" />
       <input type="hidden" name="bot-field" />
@@ -423,10 +538,10 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-content">
-    <img src="logo.png" alt="SovereignWatt" style="height:60px;width:auto;mix-blend-mode:screen;">
+    <img src="logo.png" alt="SovereignWatt" style="height:50px;width:auto;mix-blend-mode:screen;">
     <div class="footer-copy">© 2026 SovereignWatt. All rights reserved.</div>
     <ul class="footer-links">
-      <li><a href="#about">About</a></li>
+      <li><a href="#ai-tools">AI Tools</a></li>
       <li><a href="#calculator">Calculator</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#subscribe">Subscribe</a></li>
@@ -436,75 +551,211 @@
 </footer>
 
 <script>
-// MOBILE MENU
+// NAV
 function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
 
-// NEWSLETTER
-function handleSubscribe(){
-  const email=document.getElementById('emailInput').value;
-  const msg=document.getElementById('formMsg');
-  if(!email||!email.includes('@')){msg.style.display='block';msg.style.color='#F87171';msg.textContent='Please enter a valid email address.';return;}
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'waitlist',email:email}).toString()})
-  .then(r=>{if(r.ok){msg.style.display='block';msg.style.color='#34D399';msg.textContent='🎉 You\'re on the list! We\'ll be in touch soon.';document.getElementById('emailInput').value='';}else{throw new Error('fail');}})
-  .catch(()=>{msg.style.display='block';msg.style.color='#F87171';msg.textContent='Something went wrong. Please try again.';});
+// TOOL TABS
+function switchTool(id){
+  document.querySelectorAll('.tool-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// AI API CALL
+async function callAI(sysPrompt, userMsg){
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:sysPrompt,
+        messages:[{role:'user',content:userMsg}]
+      })
+    });
+    const d=await r.json();
+    return d.content.map(c=>c.text||'').join('\n');
+  }catch(e){
+    return 'Sorry, I couldn\'t process that right now. Please try again in a moment.';}
+}
+
+function formatAI(text){
+  return text
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/\n- /g,'</p><p>• ')
+    .replace(/\n/g,'<br>');
+}
+
+function showLoading(id){
+  return '<div class="loading"><div class="loading-dots"><span></span><span></span><span></span></div> Analysing...</div>';
+}
+
+// TOOL 1: CHAT ADVISOR
+const ADVISOR_PROMPT=`You are SovereignWatt's AI energy advisor — a friendly, knowledgeable expert on UK clean energy for homeowners. You help with solar panels, battery storage, heat pumps, energy bills, grants, EV chargers, and energy independence.
+
+Rules:
+- Keep answers concise (under 250 words), friendly, and practical
+- Always reference UK-specific data, prices, policies, and grants
+- Use £ currency and UK energy terminology
+- Be honest about limitations — if something depends on individual circumstances, say so
+- When relevant, mention SovereignWatt's other tools (Solar Calculator, Grant Finder, Bill Analyser, Quote Reviewer)
+- Never give specific financial advice — give general guidance and recommend professional consultation for major decisions
+- Use bullet points sparingly, prefer flowing prose
+- If asked about non-energy topics, politely redirect to energy questions`;
+
+async function sendChat(){
+  const input=document.getElementById('chatInput');
+  const box=document.getElementById('chatBox');
+  const msg=input.value.trim();
+  if(!msg)return;
+  input.value='';
+  document.getElementById('chatSend').disabled=true;
+  box.innerHTML+=`<div class="chat-msg chat-user">${msg}</div>`;
+  box.innerHTML+=`<div class="chat-msg chat-ai" id="chatLoading">${showLoading()}</div>`;
+  box.scrollTop=box.scrollHeight;
+  const reply=await callAI(ADVISOR_PROMPT,msg);
+  document.getElementById('chatLoading').outerHTML=`<div class="chat-msg chat-ai">${formatAI(reply)}</div>`;
+  box.scrollTop=box.scrollHeight;
+  document.getElementById('chatSend').disabled=false;
+}
+
+function askQuick(q){
+  document.getElementById('chatInput').value=q;
+  sendChat();
+}
+
+// TOOL 2: BILL ANALYSER
+const BILL_PROMPT=`You are SovereignWatt's AI energy bill analyst for UK homeowners. The user will provide their energy bill details. Analyse them and provide:
+
+1. **Bill Assessment** — Is their usage/cost typical for their property type? How do they compare to UK averages?
+2. **Savings Opportunities** — Specific things they could do to reduce their bills (tariff switches, usage changes, time-of-use tariffs)
+3. **Solar Potential** — Based on their usage, estimate how much solar could reduce their bill. Include estimated system size and rough payback.
+4. **Recommended Next Steps** — 2-3 concrete actions they should take
+
+Use UK-specific data and £ pricing. Be specific with numbers. Keep the response practical and under 350 words. If they haven't provided enough detail, still give useful general analysis and note what additional information would help.`;
+
+async function analyseBill(){
+  const txt=document.getElementById('billText').value.trim();
+  if(!txt){alert('Please paste your bill details first.');return;}
+  const res=document.getElementById('billResult');
+  const body=document.getElementById('billResultBody');
+  res.classList.add('show');
+  body.innerHTML=showLoading('bill');
+  const reply=await callAI(BILL_PROMPT,txt);
+  body.innerHTML='<p>'+formatAI(reply)+'</p>';
+}
+
+// TOOL 3: GRANT FINDER
+const GRANT_PROMPT=`You are SovereignWatt's AI grant finder for UK clean energy. Based on the user's property details, identify ALL grants, schemes, rebates, and incentives they may qualify for.
+
+For each grant/scheme include:
+- **Name** of the scheme
+- **What it covers** (brief)
+- **Potential value** (£ amount or % savings)
+- **Eligibility** — whether they likely qualify based on the info given
+- **How to apply** (briefly)
+
+Always include these UK schemes where relevant:
+- 0% VAT on solar/battery installations
+- Smart Export Guarantee (SEG)
+- ECO4 / Great British Insulation Scheme
+- Boiler Upgrade Scheme (for heat pumps)
+- Home Energy Scotland grants and loans (Scotland)
+- Nest scheme (Wales)
+- Northern Ireland Sustainable Energy Programme
+- Local authority grants
+- Energy Company Obligation schemes
+
+Be honest about eligibility — if they likely don't qualify, say so. Note that schemes change regularly and recommend checking gov.uk for latest info. Keep response under 400 words.`;
+
+async function findGrants(){
+  const data={
+    property:document.getElementById('grantProperty').value,
+    ownership:document.getElementById('grantOwnership').value,
+    region:document.getElementById('grantRegion').value,
+    income:document.getElementById('grantIncome').value,
+    epc:document.getElementById('grantEpc').value,
+    interest:document.getElementById('grantInterest').value
+  };
+  const msg=`Property: ${data.property}, Ownership: ${data.ownership}, Region: ${data.region}, Household income: ${data.income}, EPC rating: ${data.epc}, Interested in: ${data.interest}`;
+  const res=document.getElementById('grantResult');
+  const body=document.getElementById('grantResultBody');
+  res.classList.add('show');
+  body.innerHTML=showLoading('grant');
+  const reply=await callAI(GRANT_PROMPT,msg);
+  body.innerHTML='<p>'+formatAI(reply)+'</p>';
+}
+
+// TOOL 4: QUOTE REVIEWER
+const QUOTE_PROMPT=`You are SovereignWatt's AI solar quote reviewer for UK homeowners. The user will share details from an installer quote. Analyse it and provide:
+
+1. **Price Assessment** — Is the total cost fair for the system size? Compare to UK averages (typically £1,200-£1,800 per kWp for panels only, £1,500-£2,200 per kWp with battery). Flag if overpriced or suspiciously cheap.
+2. **Equipment Review** — Are the panels, inverter, and battery (if included) reputable brands? Are they good value?
+3. **What's Missing** — Flag anything important that's not mentioned (scaffolding, DNO notification, MCS certification, insurance-backed warranty, roof condition check, structural survey)
+4. **Questions to Ask** — 3-5 specific questions they should ask the installer before signing
+5. **Overall Verdict** — Quick summary of whether this seems like a fair deal
+
+Use UK market knowledge and £ pricing. Be balanced — don't just criticise, highlight positives too. If insufficient details, still provide useful guidance and note what info is missing. Keep under 400 words.`;
+
+async function reviewQuote(){
+  const txt=document.getElementById('quoteText').value.trim();
+  if(!txt){alert('Please paste your quote details first.');return;}
+  const res=document.getElementById('quoteResult');
+  const body=document.getElementById('quoteResultBody');
+  res.classList.add('show');
+  body.innerHTML=showLoading('quote');
+  const reply=await callAI(QUOTE_PROMPT,txt);
+  body.innerHTML='<p>'+formatAI(reply)+'</p>';
 }
 
 // SOLAR CALCULATOR
-function calculateSolar(){
+function calcSolar(){
   const bill=parseFloat(document.getElementById('calcBill').value);
   if(!bill||bill<=0){alert('Please enter your monthly electricity bill.');return;}
   const roof=parseFloat(document.getElementById('calcRoof').value);
   const sun=parseFloat(document.getElementById('calcRegion').value);
   const dir=parseFloat(document.getElementById('calcDirection').value);
-
-  // Calculations
-  const kWp=Math.min(roof/6.5,12); // ~6.5m² per kWp, max 12kWp
-  const annualGen=kWp*sun*dir; // kWh per year
-  const annualBill=bill*12;
-  const pricePerKwh=0.34;
-  const selfConsRate=0.50;
-  const exportRate=0.08;
-  const selfCons=annualGen*selfConsRate;
-  const exported=annualGen*(1-selfConsRate);
-  const savingsSelf=selfCons*pricePerKwh;
-  const savingsExport=exported*exportRate;
-  const totalSavings=savingsSelf+savingsExport;
-  const costPerKwp=1500;
-  const sysCost=kWp*costPerKwp;
-  const payback=sysCost/totalSavings;
-  const pctReduction=Math.min((totalSavings/annualBill)*100,100);
-  const net25yr=(totalSavings*25)-sysCost;
-
-  // Display
+  const kWp=Math.min(roof/6.5,12);
+  const gen=kWp*sun*dir;
+  const annBill=bill*12;
+  const selfCons=gen*0.50*0.34;
+  const exp=gen*0.50*0.08;
+  const savings=selfCons+exp;
+  const cost=kWp*1500;
+  const payback=cost/savings;
+  const pct=Math.min((savings/annBill)*100,100);
+  const net25=(savings*25)-cost;
   document.getElementById('resSystem').textContent=kWp.toFixed(1);
-  document.getElementById('resSavings').textContent='£'+Math.round(totalSavings).toLocaleString()+'/yr';
-  document.getElementById('resPayback').textContent=payback.toFixed(1)+' years';
-  document.getElementById('resCost').textContent='£'+Math.round(sysCost).toLocaleString();
-  document.getElementById('resPct').textContent=Math.round(pctReduction)+'%';
-  document.getElementById('resBar').style.width=Math.round(pctReduction)+'%';
-  document.getElementById('res25yrVal').textContent='£'+Math.round(net25yr).toLocaleString();
+  document.getElementById('resSavings').textContent='£'+Math.round(savings).toLocaleString()+'/yr';
+  document.getElementById('resPayback').textContent=payback.toFixed(1)+' yrs';
+  document.getElementById('resCost').textContent='£'+Math.round(cost).toLocaleString();
+  document.getElementById('resPct').textContent=Math.round(pct)+'%';
+  document.getElementById('resBar').style.width=Math.round(pct)+'%';
+  document.getElementById('res25yr').textContent='£'+Math.round(net25).toLocaleString();
   document.getElementById('calcResults').classList.add('show');
-  document.getElementById('calcResults').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-// BLOG ARTICLE TOGGLE
-function showArticle(id){
-  document.getElementById('blogList').style.display='none';
-  document.getElementById(id).classList.add('show');
-  document.getElementById('blog').scrollIntoView({behavior:'smooth'});
-}
-function hideArticle(){
-  document.querySelectorAll('.blog-article').forEach(a=>a.classList.remove('show'));
-  document.getElementById('blogList').style.display='block';
-}
-function showHome(){
-  hideArticle();
+// NEWSLETTER
+function handleSubscribe(){
+  const email=document.getElementById('emailInput').value;
+  const msg=document.getElementById('formMsg');
+  if(!email||!email.includes('@')){msg.style.display='block';msg.style.color='var(--red)';msg.textContent='Please enter a valid email address.';return;}
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'waitlist',email}).toString()})
+  .then(r=>{if(r.ok){msg.style.display='block';msg.style.color='var(--green)';msg.textContent='🎉 You\'re on the list!';document.getElementById('emailInput').value='';}else throw new Error();})
+  .catch(()=>{msg.style.display='block';msg.style.color='var(--red)';msg.textContent='Something went wrong. Try again.';});
 }
 
-// SCROLL ANIMATIONS
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+// BLOG
+function showArticle(id){document.getElementById('blogList').style.display='none';document.getElementById(id).classList.add('show');document.getElementById('blog').scrollIntoView({behavior:'smooth'});}
+function hideArticle(){document.querySelectorAll('.blog-article').forEach(a=>a.classList.remove('show'));document.getElementById('blogList').style.display='block';}
+function showHome(){hideArticle();}
+
+// ANIMATIONS
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
 </script>
-
 </body>
 </html>
